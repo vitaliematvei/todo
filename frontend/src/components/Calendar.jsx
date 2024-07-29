@@ -85,6 +85,3 @@ const Calendar = () => {
 };
 
 export default Calendar;
-
-
-De facut update apoi Calendarul

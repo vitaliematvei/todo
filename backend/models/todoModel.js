@@ -4,10 +4,12 @@ const todoSchema = mongoose.Schema({
   content: {
     type: String,
     required: true,
+    default: "dewfault mVI",
   },
   details: {
     type: String,
     required: true,
+    default: "dewfault mVI",
   },
   done: {
     type: Boolean,

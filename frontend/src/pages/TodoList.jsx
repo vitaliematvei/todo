@@ -43,7 +43,7 @@ const TodoList = () => {
             {todos.map((todo, index) => (
               <div
                 key={index}
-                className="flex gap-5 bg-slate-100 mb-8 py-1 rounded-md"
+                className="flex items-center gap-5 bg-slate-100 mb-8 py-1 rounded-md"
               >
                 <PiCirclesFourFill
                   style={{ color: "#D0D5DD" }}
@@ -53,6 +53,12 @@ const TodoList = () => {
                 <div>{todo.content}</div>
               </div>
             ))}
+            <Link to={`/todos/create/`}>
+              <div className="flex items-center gap-5 bg-slate-100 mb-8 py-1 rounded-md">
+                <FaCircle style={{ color: "#D0D5DD" }} className="text-5xl" />
+                <div className="text-slate-500">Add new</div>
+              </div>
+            </Link>
           </div>
         )}
       </div>
