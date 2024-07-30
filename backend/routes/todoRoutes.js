@@ -3,11 +3,14 @@ import { ToDo } from "../models/todoModel.js";
 import cors from "cors";
 
 const router = express.Router();
+
+router.use(cors());
 // Route for Save a new ToDo
-router.post("/", cors(), async (request, response) => {
+router.post("/", async (request, response) => {
   try {
     if (
       !request.body.content ||
+      !request.body.details ||
       !request.body.done ||
       !request.body.createdAt
     ) {
@@ -18,6 +21,7 @@ router.post("/", cors(), async (request, response) => {
 
     const newToDo = {
       content: request.body.content,
+      details: request.body.details,
       done: request.body.done,
       createdAt: request.body.createdAt,
     };
@@ -31,7 +35,7 @@ router.post("/", cors(), async (request, response) => {
 });
 
 // Route for Get All Todos from DB
-router.get("/", cors(), async (request, response) => {
+router.get("/", async (request, response) => {
   try {
     const todo = await ToDo.find({});
 
@@ -46,7 +50,7 @@ router.get("/", cors(), async (request, response) => {
 });
 
 //Route to Get one by ID
-router.get("/:id", cors(), async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 
@@ -60,7 +64,7 @@ router.get("/:id", cors(), async (request, response) => {
 });
 
 //Route update
-router.put("/:id", cors(), async (request, response) => {
+router.put("/:id", async (request, response) => {
   try {
     if (
       !request.body.content ||
@@ -88,7 +92,7 @@ router.put("/:id", cors(), async (request, response) => {
 });
 
 //Route Delete one
-router.delete("/:id", cors(), async (request, response) => {
+router.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
 

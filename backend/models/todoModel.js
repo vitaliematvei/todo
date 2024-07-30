@@ -4,25 +4,26 @@ const todoSchema = mongoose.Schema({
   content: {
     type: String,
     required: true,
-    default: "dewfault mVI",
   },
   details: {
     type: String,
     required: true,
-    default: "dewfault mVI",
   },
   done: {
     type: Boolean,
+    required: false,
     default: false,
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    required: true,
+    // default: Date.now,
   },
-  reminderTime: {
-    type: Date,
-    default: Date.now,
-  },
+  // reminderTime: {
+  //   type: Date,
+  //   required: false,
+  //   default: Date.now,
+  // },
 });
 
 export const ToDo = mongoose.model("ToDo", todoSchema);

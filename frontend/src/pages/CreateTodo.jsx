@@ -5,15 +5,15 @@ import axios from "axios";
 
 const CreateTodo = () => {
   const [content, setContent] = useState("");
+  const [details, setDetails] = useState("");
   const [done, setDone] = useState(false);
   const [createdAt, setCreatedAt] = useState(new Date());
-  const [details, setDetails] = useState("");
   const [reminderTime, setReminderTime] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSaveTodo = async () => {
-    const data = { content };
+    const data = { content, details, done };
     // const data = { content, done, createdAt, details, reminderTime };
     setLoading(true);
     await axios
@@ -46,7 +46,17 @@ const CreateTodo = () => {
           />
         </div>
 
-        {/* <div className="my-4">
+        <div className="my-4">
+          <label className="text-xl mr-4 text-gray-500">Details</label>
+          <input
+            type="text"
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
+            className="border-2 border-gray-500 px-4 py-2 w-full"
+          />
+        </div>
+
+        <div className="my-4">
           <label className="text-xl mr-4 text-gray-500">Done</label>
           <input
             type="checkbox"
@@ -59,22 +69,19 @@ const CreateTodo = () => {
         <div className="my-4">
           <label className="text-xl mr-4 text-gray-500">Created At</label>
           <input
-            type="time"
-            value={createdAt.toISOString().slice(11, 16)}
-            onChange={(e) => setCreatedAt(new Date(`${e.target.value}:00`))}
+            type="date"
+            value={createdAt}
+            onChange={() => setCreatedAt(createdAt)}
+            // value={createdAt.toISOString().slice(11, 16)}
+            // onChange={(e) => setCreatedAt(new Date(`${e.target.value}:00`))}
             className="border-2 border-gray-500 px-4 py-2 w-full"
           />
         </div>
 
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Details</label>
-          <input
-            type="text"
-            value={details}
-            onChange={(e) => setDetails(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-          />
-        </div>
+        {/* 
+       
+
+        
 
         <div className="my-4">
           <label className="text-xl mr-4 text-gray-500">Reminder Time</label>
